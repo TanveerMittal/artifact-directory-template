@@ -1,7 +1,7 @@
 {
-    "this-repository": "https://github.com/DSC-Capstone/artifact-directory-template.git",
-    "project-repository": "https://github.com/DSC-Capstone/project-templates.git",
-    "dockerhub-repository": "amfraenkel/fair-policing-project:latest",
-    "project-website-url": "https://afraenkel.github.io/capstone-malware-domain/",
-    "project-website-code": "https://github.com/afraenkel/capstone-malware-domain.git"
+    "this-repository": "https://github.com/TanveerMittal/artifact-directory-template",
+    "project-repository": "https://github.com/TanveerMittal/Feature_Type_Inference_Capstone",
+    "dockerhub-repository": "toonvoor/feature_type_inference_capstone:latest",
+    "project-website-url": "https://tanveermittal.github.io/capstone/",
+    "project-website-code": "https://github.com/TanveerMittal/tanveermittal.github.io"
 }

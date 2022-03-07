@@ -1,5 +1,17 @@
 Title:
-<MY SUPER AWESOME PROJECT TITLE>
+Deep Learning Transformer Models for Feature Type Inference
 
 Abstract:
-<MY SUPER AWESOME PROJECT ABSTRACT>
+The first step AutoML software must take after loading in the data is to identify the feature types of individual columns in input data. This information then allows the software to understand the data and then preprocess it to allow machine learning algorithms to run on it.
+ 
+Project Sortinghat of the ADA lab at UCSD frames this task of Feature Type Inference as a machine learning multiclass classification problem. Machine learning models defined in the original SortingHat feature type inference paper use 3 sets of features as input.
+
+1. The name of the given column
+2. 5 not null sample values 
+3. Descriptive numeric features about the column
+
+The textual features are easy to access, however the descriptive statistics previous models rely on require a full pass through the data which make preprocessing less scalable. Our goal is to produce models that may rely less on these statistics by better leveraging the textual features. As an extension of Project SortingHat, we experimented with deep learning transformer models and varying the sample sizes used by random forest models.
+
+We found that our transformer models achieved state of the art results on this task which outperform all existing tools and ML models that have been benchmarked against SortingHat's ML Data Prep Zoo. Our best model used a pretrained Bidirectional Encoder Representations Transformer(BERT) language model to produce word embeddings which are then processed by a Convolutional Neural Network(CNN) model. 
+
+As a result of this project, we have published 2 BERT CNN models using the PyTorch Hub api. This is to allow software engineers to easily integrate our models or train similar ones for use in AutoML platforms or other automated data preparation applications. Our best model uses all the features defined above, while the other only uses column names and sample values while offering comparable performance and much better scalability for all input data.
