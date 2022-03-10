@@ -1,17 +1,16 @@
 Title:
-Deep Learning Transformer Models for Feature Type Inference
+Machine Learning Modeling for Feature Type Inference
 
 Abstract:
-The first step AutoML software must take after loading in the data is to identify the feature types of individual columns in input data. This information then allows the software to understand the data and then preprocess it to allow machine learning algorithms to run on it.
- 
-Project Sortinghat of the ADA lab at UCSD frames this task of Feature Type Inference as a machine learning multiclass classification problem. Machine learning models defined in the original SortingHat feature type inference paper use 3 sets of features as input.
+Automated Machine Learning(AutoML) has grown in popularity recently as it has enabled scalable ML for the masses. Currently the machine learning pipeline has a lot of manual steps such as data preprocessing and model building. AutoML platforms and software aim to automate the entire ML pipeline. Many such platforms already exist such as Amazon Sagemaker, Google Cloud AutoML, Salesforce Einstein and more. As a result the different steps involved in the AutoML pipeline are heavily researched in academia as well.
 
-1. The name of the given column
-2. 5 not null sample values 
-3. Descriptive numeric features about the column
+The first step AutoML software must take after loading in a dataset is to identify the feature types (ie numeric, categorical, datetime, ...) of individual columns in the input data. This feature type inference information allows the software to understand the data and preprocess it to allow machine learning algorithms to run on it. Feature type inference is still being done manually by data scientists which in most cases becomes impractical as dataset can have hundreds or more features that require labeling. Previous tools have also implemented automated Feature Type Inference using rules-based prediction. 
 
-The textual features are easy to access, however the descriptive statistics previous models rely on require a full pass through the data which make preprocessing less scalable. Our goal is to produce models that may rely less on these statistics by better leveraging the textual features. As an extension of Project SortingHat, we experimented with deep learning transformer models and varying the sample sizes used by random forest models.
+Project Sortinghat of the ADA lab at UCSD frames this task of Feature Type Inference as a machine learning multiclass classification problem. Machine learning models defined in the original SortingHat feature type inference paper\cite{Shah01} use 3 sets of features as input.
+\begin{enumerate}
+    \item The name of the given column
+    \item 5 sample values from the data to be used as base features
+    \item Descriptive numeric statistics computed from the entire given column (Listed in Table 1)
+\end{enumerate}
 
-We found that our transformer models achieved state of the art results on this task which outperform all existing tools and ML models that have been benchmarked against SortingHat's ML Data Prep Zoo. Our best model used a pretrained Bidirectional Encoder Representations Transformer(BERT) language model to produce word embeddings which are then processed by a Convolutional Neural Network(CNN) model. 
-
-As a result of this project, we have published 2 BERT CNN models using the PyTorch Hub api. This is to allow software engineers to easily integrate our models or train similar ones for use in AutoML platforms or other automated data preparation applications. Our best model uses all the features defined above, while the other only uses column names and sample values while offering comparable performance and much better scalability for all input data.
+The textual features such as the column name and the 5 sample values are easy to access, however the descriptive statistics models rely on a full iteration through every row and value in the data which make preprocessing less scalable as the dataset size grows. To improve scalability and accuracy we decided to apply new models and investigate the effects of different methods of computing features on model performance. Our investigations produced results that help us better understand the models previously trained by SortingHat. We also trained and published 2 deep learning transformer CNN models which provide better accuracy than all other previously created tools and models. One of these models also does not use descriptive statistics while providing comparable performance; this provides great scalability for inference.
